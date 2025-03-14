@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const BuyCredit = () => {
-  return (
-    <div>BuyCredit</div>
-  )
-}
+  return <div>BuyCredit</div>;
+};
 
-export default BuyCredit
+export default BuyCredit;
