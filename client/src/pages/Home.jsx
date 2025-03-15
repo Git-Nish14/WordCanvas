@@ -6,14 +6,15 @@ import Testimonials from "../components/Testimonials";
 import GenerateBtn from "../components/GenerateBtn";
 
 const Home = () => {
-  return <div>
-          <Hero />
-          <Steps />
-          <Description />
-          <Testimonials />
-          <GenerateBtn />
-  
-          </div>;
+  return (
+    <div>
+      <Hero />
+      <Steps />
+      <Description />
+      <Testimonials />
+      <GenerateBtn />
+    </div>
+  );
 };
 
 export default Home;
