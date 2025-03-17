@@ -19,6 +19,7 @@ import credit_star from "./credit_star.svg";
 import profile_icon from "./profile_icon.png";
 import github_icon from "./github_icon.svg";
 import linkedin_icon from "./linkedin_icon.svg";
+import person_icon from "./person_icon.svg";
 
 export const assets = {
   logo,
@@ -37,6 +38,7 @@ export const assets = {
   profile_icon,
   github_icon,
   linkedin_icon,
+  person_icon,
 };
 
 export const stepsData = [
