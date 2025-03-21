@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [state, setState] = useState("Login");
@@ -18,7 +19,13 @@ const Login = () => {
 
   return (
     <div className="fixed inset-0 z-[1000] backdrop-blur-sm bg-black/30 flex justify-center items-center">
-      <form className="relative bg-white p-10 rounded-xl text-slate-500 max-h-screen overflow-y-auto w-96 shadow-lg">
+      <motion.form
+        initial={{ opacity: 0.2, y: 50 }}
+        transition={{ duration: 0.3 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative bg-white p-10 rounded-xl text-slate-500 max-h-screen overflow-y-auto w-96 shadow-lg"
+      >
         <h1 className="text-center text-2xl text-neutral-700 font-medium">
           {state}
         </h1>
@@ -98,7 +105,7 @@ const Login = () => {
           alt=""
           className="absolute top-5 right-5 cursor-pointer"
         />
-      </form>
+      </motion.form>
     </div>
   );
 };
