@@ -24,7 +24,7 @@ const registerUser = async (req, res)=>{
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
 
-        res.json({success: true, token, user: {name: user.name}})
+        res.json({success: true, token, user:{ credits: user.creditBalance, name: user.name}})
 
     } catch(error){
         console.log(error)
@@ -46,7 +46,7 @@ const loginUser = async(req, res)=>{
         if(isMatch){
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
 
-        res.json({success: true, token, user: {name: user.name}})
+        res.json({success: true, token, user:{ credits: user.creditBalance, name: user.name}})
         }else{
             return res.json({success: false, message: 'Invalid Credentials'})
         }
@@ -61,7 +61,7 @@ const userCredits = async (req, res)=>{
         const {userId} = req.body
 
         const user = await userModel.findById(userId)
-        res.json({success: true, credits: user.creditBalance, name: user.name})
+        res.json({success: true, user:{ credits: user.creditBalance, name: user.name}})
     }catch(error){
         console.log(error)
         res.json({success: false, message: error.message})

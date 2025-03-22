@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
-  const { user, setShowLogin } = useContext(AppContext);
+  const { user, setShowLogin, logout } = useContext(AppContext);
   const navigate = useNavigate();
   return (
-    <div className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between py-4 ml-3 mr-3">
       <Link to="/">
         <img src={assets.logo} alt="" className="w-28 sm:w-32 lg:w-40"></img>
       </Link>
@@ -20,10 +20,10 @@ const Navbar = () => {
             >
               <img src={assets.credit_star} alt="" className="w-5"></img>
               <p className="text-xs sm:text-sm font-medium text-gray-600">
-                Credits left : 50
+                Credits left : {user.credits}
               </p>
             </button>
-            <p className="text-gray-600 max-sm:hidden pl-4">Hi, Nish</p>
+            <p className="text-gray-600 max-sm:hidden pl-4">Hi, {user.name}</p>
             <div className="relative group">
               <img
                 src={assets.profile_icon}
@@ -32,7 +32,7 @@ const Navbar = () => {
               />
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12">
                 <ul className="list-none m-0 p-2 bg-white rounded-md border text-sm">
-                  <li className="py-1 px-2 pr-10 cursor-pointer">Logout</li>
+                  <li onClick={logout} className="py-1 px-2 pr-10 cursor-pointer">Logout</li>
                 </ul>
               </div>
             </div>
