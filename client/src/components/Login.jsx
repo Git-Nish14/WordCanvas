@@ -30,7 +30,7 @@ const Login = () => {
         } else {
           toast.error(data.message);
         }
-      }else{
+      } else {
         const { data } = await axios.post(backendUrl + "/api/user/register", {
           name,
           email,
@@ -45,7 +45,9 @@ const Login = () => {
           toast.error(data.message);
         }
       }
-    } catch (error) { toast.error(error.message);}
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {

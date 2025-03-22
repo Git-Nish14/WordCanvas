@@ -8,21 +8,20 @@ const Result = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  const {generateImage} = useContext(AppContext)
+  const { generateImage } = useContext(AppContext);
   const onSubmitHandler = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
-    if(input){
-      const image= await generateImage(input)
-      if(image){
-        setIsImageLoaded(true)
-        setImage(image)
+    if (input) {
+      const image = await generateImage(input);
+      if (image) {
+        setIsImageLoaded(true);
+        setImage(image);
       }
     }
-    setLoading(false)
+    setLoading(false);
   };
-
 
   return (
     <motion.form

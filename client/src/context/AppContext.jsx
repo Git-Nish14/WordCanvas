@@ -13,7 +13,7 @@ const AppContextProvider = (props) => {
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const loadCreditsData = async () => {
     try {
@@ -21,9 +21,9 @@ const AppContextProvider = (props) => {
         headers: { token },
       });
       if (data.success) {
-        console.log(data)
-         setCredit(data.user.credits);
-         setUser(data.user);
+        console.log(data);
+        setCredit(data.user.credits);
+        setUser(data.user);
       }
     } catch (error) {
       console.log(error);
@@ -31,38 +31,41 @@ const AppContextProvider = (props) => {
     }
   };
 
-  const generateImage = async (prompt)=>{
-    try{
-      const { data } = await axios.post(`${backendUrl}/api/image/generate-image`, {prompt}, {headers: { token }})
-      if(data.success){
-        loadCreditsData()
-        return data.resultImage
-      }else{
-        toast.error(data.message)
-        loadCreditsData()
-        if(data.creditBalance === 0){
-          navigate('/buy')
+  const generateImage = async (prompt) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/image/generate-image`,
+        { prompt },
+        { headers: { token } },
+      );
+      if (data.success) {
+        loadCreditsData();
+        return data.resultImage;
+      } else {
+        toast.error(data.message);
+        loadCreditsData();
+        if (data.creditBalance === 0) {
+          navigate("/buy");
         }
       }
-    }catch(error){
-      toast.error(error.message)
+    } catch (error) {
+      toast.error(error.message);
     }
-  }
+  };
 
-  const logout =()=>{
-    localStorage.removeItem("token")
-    setToken('')
-    setUser(null)
-  }
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setUser(null);
+  };
 
   useEffect(() => {
     console.log("Updated user:", user);
   }, [user]);
-  
+
   useEffect(() => {
     console.log("Updated credit:", credit);
   }, [credit]);
-  
 
   // ✅ Only run once on initial load
   useEffect(() => {
@@ -70,8 +73,8 @@ const AppContextProvider = (props) => {
     if (localToken) {
       setToken(localToken);
     }
-    console.log(user)
-    console.log(credit)
+    console.log(user);
+    console.log(credit);
   }, []);
 
   // ✅ Load user credits whenever token is updated
